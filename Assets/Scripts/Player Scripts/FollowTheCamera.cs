@@ -5,11 +5,9 @@ using UnityEngine;
 public class FollowTheCamera : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
-    [SerializeField] private  float _rotationSpeed = 5f;
     [SerializeField] private  float _followSpeed;
     private float _cameraDepth = 11f;
     private float _cameraHeight = 8f;
-
     private Vector3 target;
 
     void Update()

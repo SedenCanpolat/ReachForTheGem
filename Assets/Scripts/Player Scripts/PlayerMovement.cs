@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _controller;
     [SerializeField] private float _speed = 5;
-    [SerializeField] private  float _rotationSpeed = 0.1f;
+    [SerializeField] private  float _rotationSpeed;
     
     
     private void Start() {
