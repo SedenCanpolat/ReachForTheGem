@@ -21,4 +21,5 @@ public class ItemObject : Interactable
     private void _destroyItem(){
         Destroy(gameObject);
     }
+
 }

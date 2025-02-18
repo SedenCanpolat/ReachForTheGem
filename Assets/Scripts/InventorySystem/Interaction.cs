@@ -1,24 +1,62 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-     [SerializeField] private PlayerDistance playerDistance;
-     [SerializeField] private GameObject player;
+     [SerializeField] private PlayerDistance _playerDistance;
+     [SerializeField] private TextMeshProUGUI _text;
 
-     void Update(){
-               var seenObject = _raycast();
+    
 
-               if(Input.GetKeyDown(KeyCode.E) && playerDistance.CreateAreaForPlayer()){
+    void Update(){
+     
+          var seenObject = _raycast();
+
+          if(_playerDistance.CreateAreaForPlayer()){
+               _playerDistance.ShowInteractText(_text);
+               if(Input.GetKeyDown(KeyCode.E)){
                     if(seenObject && seenObject.IsInteractable()){
+                         seenObject.Interact(null);
+                         _playerDistance.CloseInteractText(_text);
+                    }
+                    if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand){
+                         if(seenObject.Interact(Inventory.instance.ItemOnHand)){
+                              var item = Inventory.instance.ItemOnHand;
+                              print("item " + item);
+                              Inventory.instance.EmptyHand();
+                              Inventory.instance.RemoveItem(item);
+                         }
+                    }
+                    Inventory.instance.EmptyHand();     
+               }
+          }
+          else{
+               _playerDistance.CloseInteractText(_text);
+          }     
+
+/*
+               var seenObject = _raycast();
+               
+               if(_playerDistance.CreateAreaForPlayer()){
+                    _playerDistance.ShowInteractText(text);
+               }
+
+               else{
+                    _playerDistance.CloseInteractText(text);
+               }
+
+               if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
+                    if(seenObject && seenObject.IsInteractable()){                         
                          Debug.Log(seenObject.name);
                          seenObject.Interact(null);
+                         _playerDistance.CloseInteractText(text);
                     }  
                }
 
-               if(Input.GetKeyDown(KeyCode.E) && playerDistance.CreateAreaForPlayer()){
+               if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
                     if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand){
                          if(seenObject.Interact(Inventory.instance.ItemOnHand)){
                               var item = Inventory.instance.ItemOnHand;
@@ -29,6 +67,9 @@ public class Interaction : MonoBehaviour
                     }
                     Inventory.instance.EmptyHand();    
                }
+
+*/               
+
           
      }
 

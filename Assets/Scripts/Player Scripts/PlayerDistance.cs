@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerDistance : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class PlayerDistance : MonoBehaviour
         foreach (Collider colliderObj in hitColliders){
             Interactable interactableObj = colliderObj.GetComponent<Interactable>();
             if(interactableObj && interactableObj.IsInteractable()){
-                Debug.Log(colliderObj.name);
                 return true;
             }
         }
@@ -25,6 +25,15 @@ public class PlayerDistance : MonoBehaviour
 
     }
 
+    
+    public void ShowInteractText(TextMeshProUGUI text){//, TextMeshProUGUI button){ {button.text}
+        text.text = $"Press E button";
+        text.gameObject.SetActive(true);
+    }
+
+    public void CloseInteractText(TextMeshProUGUI text){
+        text.gameObject.SetActive(false);
+    }
     
 
     
