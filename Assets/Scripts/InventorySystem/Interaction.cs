@@ -9,50 +9,55 @@ public class Interaction : MonoBehaviour
      [SerializeField] private PlayerDistance _playerDistance;
      [SerializeField] private TextMeshProUGUI _text;
 
-    
+     void Update(){
+          
+          var seenObject = _raycast(); 
 
-    void Update(){
-     
-          var seenObject = _raycast();
-
-          if(_playerDistance.CreateAreaForPlayer()){
+          if(_playerDistance.CreateAreaForPlayer()){ 
                _playerDistance.ShowInteractText(_text);
-               if(Input.GetKeyDown(KeyCode.E)){
-                    if(seenObject && seenObject.IsInteractable()){
-                         seenObject.Interact(null);
-                         _playerDistance.CloseInteractText(_text);
-                    }
-                    if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand){
-                         if(seenObject.Interact(Inventory.instance.ItemOnHand)){
-                              var item = Inventory.instance.ItemOnHand;
-                              print("item " + item);
-                              Inventory.instance.EmptyHand();
-                              Inventory.instance.RemoveItem(item);
-                         }
-                    }
-                    Inventory.instance.EmptyHand();     
-               }
           }
+
           else{
                _playerDistance.CloseInteractText(_text);
-          }     
+          }
 
-/*
+          if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
+               if(seenObject && seenObject.IsInteractable()){                         
+                    Debug.Log(seenObject.name);
+                    seenObject.Interact(null);
+                    _playerDistance.CloseInteractText(_text);
+               }  
+          }
+
+          if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
+               if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand){
+                    if(seenObject.Interact(Inventory.instance.ItemOnHand)){
+                         var item = Inventory.instance.ItemOnHand;
+                         print("item " + item);
+                         Inventory.instance.EmptyHand();
+                         Inventory.instance.RemoveItem(item);
+                    }
+               }
+               Inventory.instance.EmptyHand();    
+          }
+        
+          /*
+
                var seenObject = _raycast();
                
                if(_playerDistance.CreateAreaForPlayer()){
-                    _playerDistance.ShowInteractText(text);
+                    _playerDistance.ShowInteractText(_text);
                }
 
                else{
-                    _playerDistance.CloseInteractText(text);
+                    _playerDistance.CloseInteractText(_text);
                }
 
                if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
                     if(seenObject && seenObject.IsInteractable()){                         
                          Debug.Log(seenObject.name);
                          seenObject.Interact(null);
-                         _playerDistance.CloseInteractText(text);
+                         _playerDistance.CloseInteractText(_text);
                     }  
                }
 
@@ -68,7 +73,7 @@ public class Interaction : MonoBehaviour
                     Inventory.instance.EmptyHand();    
                }
 
-*/               
+          */ 
 
           
      }

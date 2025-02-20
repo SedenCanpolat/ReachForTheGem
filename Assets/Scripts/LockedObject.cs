@@ -1,18 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LockedObject : MonoBehaviour
+public class LockedObject : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private bool _isEmpty;
+    [SerializeField] private GameObject _itemInside;
+    [SerializeField] private Item _key;
+    private bool isHappend = false;
+    public override bool Interact(Item item)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        if(item != null && item.ID == _key.ID){
+            Debug.Log("Door Opened :)");
+            InsideOut insideOut = GetComponent<InsideOut>();
+            if(insideOut && !isHappend){
+                if(_isEmpty){
+                    Debug.Log("Empty");
+                    insideOut.NoItem();
+                    isHappend = true;
+                }
+                else{
+                    if (_itemInside != null)
+                    {
+                        Debug.Log("Not Empty");
+                        insideOut.ItemExist(_itemInside);
+                        isHappend = true;
+                    }
+                    else{
+                        Debug.LogWarning("_itemInside has already been destroyed.");
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }   
 }

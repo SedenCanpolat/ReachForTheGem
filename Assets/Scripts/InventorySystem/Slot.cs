@@ -15,6 +15,15 @@ public class Slot : MonoBehaviour, IPointerDownHandler
         OnSelected(item);
     }
 
+    /*
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E)){
+             OnSelected(item);
+        } 
+    }
+    */
+
     public void SetSlot(Item item){
         this.item = item;
         GetComponent<Image>().sprite = item.Icon;
