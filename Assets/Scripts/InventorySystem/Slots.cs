@@ -33,7 +33,7 @@ public class Slots : MonoBehaviour
     public void ShowCursor(Item item){
         // cursor takip eden icon belirecek
         _selectedSlot = _getSlot(item);
-        if (_selectedSlot == null) return;
+        //if (_selectedSlot == null) return;
         _selectedSlot.transform.SetParent(transform.parent);
     }
 

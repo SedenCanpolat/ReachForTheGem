@@ -1,36 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-     [SerializeField] private PlayerDistance _playerDistance;
-     [SerializeField] private TextMeshProUGUI _text;
+
+     public Func<bool> CheckCanInteract;
+     public Action OnInteracted;
 
      void Update(){
           
-          var seenObject = _raycast(); 
+          var seenObject = _raycast();
 
-          if(_playerDistance.CreateAreaForPlayer()){ 
-               _playerDistance.ShowInteractText(_text);
+          bool canInteract = true;
+          if(CheckCanInteract != null){
+               canInteract = CheckCanInteract(); 
           }
-
-          else{
-               _playerDistance.CloseInteractText(_text);
-          }
-
-          if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
-               if(seenObject && seenObject.IsInteractable()){                         
+          
+        
+          if(Input.GetMouseButtonDown(0)){
+               if(seenObject && seenObject.IsInteractable() && canInteract){                         
                     Debug.Log(seenObject.name);
                     seenObject.Interact(null);
-                    _playerDistance.CloseInteractText(_text);
+                    OnInteracted?.Invoke();
                }  
           }
 
-          if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
-               if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand){
+          if(Input.GetMouseButtonUp(0)){
+               if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand && canInteract){
                     if(seenObject.Interact(Inventory.instance.ItemOnHand)){
                          var item = Inventory.instance.ItemOnHand;
                          print("item " + item);

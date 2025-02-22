@@ -10,19 +10,11 @@ public class Slot : MonoBehaviour, IPointerDownHandler
     public Item item;
 
     public Action<Item> OnSelected;
+    
     public void OnPointerDown(PointerEventData eventData)
     {
         OnSelected(item);
     }
-
-    /*
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)){
-             OnSelected(item);
-        } 
-    }
-    */
 
     public void SetSlot(Item item){
         this.item = item;

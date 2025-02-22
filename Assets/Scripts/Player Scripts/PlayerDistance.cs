@@ -6,6 +6,8 @@ using TMPro;
 public class PlayerDistance : MonoBehaviour
 {
     [SerializeField] private float _distanceRadius;
+    [SerializeField] private Interaction _interaction;
+    [SerializeField] private TextMeshProUGUI _text;
     
 
     public bool CreateAreaForPlayer(){
@@ -26,15 +28,33 @@ public class PlayerDistance : MonoBehaviour
     }
 
     
-    public void ShowInteractText(TextMeshProUGUI text){//, TextMeshProUGUI button){ {button.text}
-        text.text = $"Press E button";
-        text.gameObject.SetActive(true);
+    public void ShowInteractText(){//, TextMeshProUGUI button){ {button.text}
+        _text.text = $"Press E button";
+        _text.gameObject.SetActive(true);
     }
 
-    public void CloseInteractText(TextMeshProUGUI text){
-        text.gameObject.SetActive(false);
+    public void CloseInteractText(){
+        _text.gameObject.SetActive(false);
     }
-    
 
-    
+    void Update()
+    {
+          if(_interaction.CheckCanInteract()){ 
+            ShowInteractText();
+          }
+
+          else{
+            CloseInteractText();
+          }
+
+    }
+
+    void Start()
+    {
+        _interaction.OnInteracted += CloseInteractText;
+        _interaction.CheckCanInteract += CreateAreaForPlayer;
+    }
+
+
+
 }

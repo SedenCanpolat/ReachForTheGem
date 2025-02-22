@@ -25,9 +25,6 @@ public class LockedObject : Interactable
                         insideOut.ItemExist(_itemInside);
                         isHappend = true;
                     }
-                    else{
-                        Debug.LogWarning("_itemInside has already been destroyed.");
-                    }
                 }
             }
             return true;
