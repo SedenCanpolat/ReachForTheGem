@@ -636,6 +636,8 @@ GameObject:
   - component: {fileID: 222060663}
   - component: {fileID: 222060662}
   - component: {fileID: 222060661}
+  - component: {fileID: 222060664}
+  - component: {fileID: 222060665}
   m_Layer: 0
   m_Name: Door (2)
   m_TagString: Untagged
@@ -729,6 +731,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222060659}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &222060664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222060659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58be060b5c0fc7d44bb1dc7a3f7dad1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEmpty: 0
+  _itemInside: {fileID: 0}
+  _key: {fileID: 11400000, guid: 1ee89ea897bc37242975c3a147c58e83, type: 2}
+  isSecond: 0
+--- !u!114 &222060665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222060659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987585f965b80e34faf7e9a2058bb232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
 --- !u!1 &226803416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,6 +1330,7 @@ MonoBehaviour:
   _isEmpty: 0
   _itemInside: {fileID: 4799580416227506365, guid: e0d475914ec386f4bb080ad6c2dd228f, type: 3}
   _key: {fileID: 11400000, guid: a06dc085602ab7d4aaa42cb0800bceca, type: 2}
+  isSecond: 0
 --- !u!114 &526512461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,6 +2237,8 @@ GameObject:
   - component: {fileID: 921887910}
   - component: {fileID: 921887909}
   - component: {fileID: 921887908}
+  - component: {fileID: 921887912}
+  - component: {fileID: 921887911}
   m_Layer: 0
   m_Name: Door (4)
   m_TagString: Untagged
@@ -2298,6 +2332,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921887906}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &921887911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921887906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987585f965b80e34faf7e9a2058bb232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+--- !u!114 &921887912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921887906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58be060b5c0fc7d44bb1dc7a3f7dad1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEmpty: 0
+  _itemInside: {fileID: 0}
+  _key: {fileID: 11400000, guid: a06dc085602ab7d4aaa42cb0800bceca, type: 2}
+  isSecond: 0
 --- !u!1 &930389133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3673,7 @@ MonoBehaviour:
   _isEmpty: 1
   _itemInside: {fileID: 0}
   _key: {fileID: 11400000, guid: 1ee89ea897bc37242975c3a147c58e83, type: 2}
+  isSecond: 0
 --- !u!114 &1486406618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3805,6 +3869,7 @@ MonoBehaviour:
   _isEmpty: 1
   _itemInside: {fileID: 0}
   _key: {fileID: 11400000, guid: 1ee89ea897bc37242975c3a147c58e83, type: 2}
+  isSecond: 0
 --- !u!114 &1638495764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4034,6 +4099,8 @@ GameObject:
   - component: {fileID: 1774129960}
   - component: {fileID: 1774129959}
   - component: {fileID: 1774129958}
+  - component: {fileID: 1774129962}
+  - component: {fileID: 1774129961}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -4127,6 +4194,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774129956}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1774129961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774129956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58be060b5c0fc7d44bb1dc7a3f7dad1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEmpty: 0
+  _itemInside: {fileID: 0}
+  _key: {fileID: 11400000, guid: 1ee89ea897bc37242975c3a147c58e83, type: 2}
+  isSecond: 0
+--- !u!114 &1774129962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774129956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987585f965b80e34faf7e9a2058bb232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
 --- !u!1 &1847485528
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,6 +4800,7 @@ MonoBehaviour:
   _isEmpty: 0
   _itemInside: {fileID: 4799580416227506365, guid: e0d475914ec386f4bb080ad6c2dd228f, type: 3}
   _key: {fileID: 11400000, guid: a06dc085602ab7d4aaa42cb0800bceca, type: 2}
+  isSecond: 0
 --- !u!114 &2078974747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4799,6 +4896,8 @@ GameObject:
   - component: {fileID: 2079395336}
   - component: {fileID: 2079395335}
   - component: {fileID: 2079395334}
+  - component: {fileID: 2079395338}
+  - component: {fileID: 2079395337}
   m_Layer: 0
   m_Name: Door (1)
   m_TagString: Untagged
@@ -4892,6 +4991,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079395332}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2079395337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079395332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58be060b5c0fc7d44bb1dc7a3f7dad1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEmpty: 0
+  _itemInside: {fileID: 0}
+  _key: {fileID: 11400000, guid: a06dc085602ab7d4aaa42cb0800bceca, type: 2}
+  isSecond: 1
+--- !u!114 &2079395338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079395332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987585f965b80e34faf7e9a2058bb232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
 --- !u!1001 &5445756786172948476
 PrefabInstance:
   m_ObjectHideFlags: 0

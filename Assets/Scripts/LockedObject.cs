@@ -7,6 +7,15 @@ public class LockedObject : Interactable
     [SerializeField] private GameObject _itemInside;
     [SerializeField] private Item _key;
     private bool isHappend = false;
+    private bool isMoved = false;
+    private MovingObject _movingObject;
+    [SerializeField] private bool isSecond = false;
+
+    void Start()
+    {
+        _movingObject = GetComponent<MovingObject>();
+    }
+
     public override bool Interact(Item item)
     {
         if(item != null && item.ID == _key.ID){
@@ -26,6 +35,21 @@ public class LockedObject : Interactable
                         isHappend = true;
                     }
                 }
+            }
+            else if(!isHappend){
+                if(!isMoved){
+                    if(isSecond){
+                        StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Right));
+                    }
+                    else if(gameObject.transform.rotation.y != 0){
+                        StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Rotated));
+                    }
+                    else{
+                        StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Left));
+                    }
+                    isMoved = true;
+                }
+                isHappend = true;
             }
             return true;
         }
