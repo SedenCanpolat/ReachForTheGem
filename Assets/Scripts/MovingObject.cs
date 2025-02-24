@@ -30,4 +30,8 @@ public class MovingObject : MonoBehaviour
             yield return null;
         }  
     }
+
+    public void SlideToSideAnimation(){
+        Debug.Log("This is a SlideToSideAnimation");
+    }
 }

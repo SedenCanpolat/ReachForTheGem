@@ -6,14 +6,19 @@ public class LockedObject : Interactable
     [SerializeField] private bool _isEmpty;
     [SerializeField] private GameObject _itemInside;
     [SerializeField] private Item _key;
-    private bool isHappend = false;
-    private bool isMoved = false;
+    public bool IsHappend = false;
     private MovingObject _movingObject;
-    [SerializeField] private bool isSecond = false;
+    [SerializeField] private bool _isSecond = false;
+
+    [SerializeField] private GameObject _pairedObject;
+    [SerializeField] private GameObject _blockObject;
 
     void Start()
     {
         _movingObject = GetComponent<MovingObject>();
+        if(_blockObject != null){
+            _blockObject.SetActive(false);
+        }
     }
 
     public override bool Interact(Item item)
@@ -21,24 +26,29 @@ public class LockedObject : Interactable
         if(item != null && item.ID == _key.ID){
             Debug.Log("Door Opened :)");
             InsideOut insideOut = GetComponent<InsideOut>();
-            if(insideOut && !isHappend){
+            if(insideOut && !IsHappend){
                 if(_isEmpty){
                     Debug.Log("Empty");
                     insideOut.NoItem();
-                    isHappend = true;
+                    IsHappend = true;
                 }
                 else{
                     if (_itemInside != null)
                     {
                         Debug.Log("Not Empty");
                         insideOut.ItemExist(_itemInside);
-                        isHappend = true;
+                        IsHappend = true;
                     }
                 }
             }
-            else if(!isHappend){
-                if(!isMoved){
-                    if(isSecond){
+            else if(!IsHappend){
+                if(_pairedObject != null && _blockObject != null) {
+                    _blockObject.SetActive(true);
+                    if(_pairedObject.GetComponent<LockedObject>().IsHappend){
+                        _blockObject.SetActive(false);
+                    }
+                }
+                    if(_isSecond){
                         StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Right));
                     }
                     else if(gameObject.transform.rotation.y != 0){
@@ -47,9 +57,10 @@ public class LockedObject : Interactable
                     else{
                         StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Left));
                     }
-                    isMoved = true;
-                }
-                isHappend = true;
+                    
+                
+                IsHappend = true;
+                
             }
             return true;
         }
