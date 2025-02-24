@@ -17,6 +17,10 @@ public class Interaction : MonoBehaviour
           if(CheckCanInteract != null){
                canInteract = CheckCanInteract(); 
           }
+
+          if(Input.GetAxis("Mouse ScrollWheel") != 0){
+               Debug.Log("WHEEL");
+          }
           
         
           if(Input.GetMouseButtonDown(0)){
