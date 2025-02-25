@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slots : MonoBehaviour
 {
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private InventoryUI inventoryUI;
+
+    public GameObject Frame;
 
     public void CreateSlot(Item item)
     {
@@ -16,7 +19,8 @@ public class Slots : MonoBehaviour
     }
 
     public void RemoveSlot(Item item){
-        _getSlot(item)?.DestroySlot();           
+        _getSlot(item)?.DestroySlot();
+        Frame.SetActive(false);           
     }
 
     private Slot _getSlot(Item item){
@@ -35,12 +39,16 @@ public class Slots : MonoBehaviour
         _selectedSlot = _getSlot(item);
         //if (_selectedSlot == null) return;
         _selectedSlot.transform.SetParent(transform.parent);
+        Frame.SetActive(true);
+        Frame.transform.position = _selectedSlot.transform.position;
+        print("YEY");
     }
 
     public void HideCursor(){
         // cursor takip eden icon silinecek
         _selectedSlot?.transform.SetParent(transform);
         _selectedSlot = null;
+        
     }
 
     private void _followCursor(){

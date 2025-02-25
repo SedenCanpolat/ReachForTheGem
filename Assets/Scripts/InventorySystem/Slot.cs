@@ -8,9 +8,8 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour, IPointerDownHandler
 {
     public Item item;
-
     public Action<Item> OnSelected;
-    
+
     public void OnPointerDown(PointerEventData eventData)
     {
         OnSelected(item);
