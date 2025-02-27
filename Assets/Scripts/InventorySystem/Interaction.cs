@@ -17,13 +17,9 @@ public class Interaction : MonoBehaviour
           if(CheckCanInteract != null){
                canInteract = CheckCanInteract(); 
           }
-
-          if(Input.GetAxis("Mouse ScrollWheel") != 0){
-               Debug.Log("WHEEL");
-          }
-          
+   
         
-          if(Input.GetMouseButtonDown(0)){
+          if(Input.GetKeyDown(KeyCode.E)){//GetMouseButtonDown(0)){
                if(seenObject && seenObject.IsInteractable() && canInteract){                         
                     Debug.Log(seenObject.name);
                     seenObject.Interact(null);
@@ -31,7 +27,7 @@ public class Interaction : MonoBehaviour
                }  
           }
 
-          if(Input.GetMouseButtonUp(0)){
+          if(Input.GetKeyDown(KeyCode.F)){//GetMouseButtonUp(0)){
                if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand && canInteract){
                     if(seenObject.Interact(Inventory.instance.ItemOnHand)){
                          var item = Inventory.instance.ItemOnHand;

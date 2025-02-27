@@ -18,6 +18,10 @@ public class InventoryUI : MonoBehaviour
     public Item SelectedItem {get; private set;}
 
     public void SelectItem(Item item){
+        if(Inventory.instance.ItemOnHand != null){
+            UnSelectItem();
+            print("HANDS FULL");
+        }
         SelectedItem = item;
         slots.ShowCursor(item);
     }
@@ -26,4 +30,10 @@ public class InventoryUI : MonoBehaviour
         SelectedItem = null;
         slots.HideCursor();
     }
+
+    public int GetSelectIdx(){
+        return slots.SelectedIndex;
+    }
+
+
 }
