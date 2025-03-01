@@ -31,8 +31,8 @@ public class InventoryUI : MonoBehaviour
         slots.HideCursor();
     }
 
-    public int GetSelectIdx(){
-        return slots.SelectedIndex;
+    public Slot GetSelectedSlot(){
+        return slots._getSlot(Inventory.instance.UpdateSelectedItem());
     }
 
 

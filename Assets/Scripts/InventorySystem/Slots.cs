@@ -28,7 +28,7 @@ public class Slots : MonoBehaviour
         _hand.sprite = null;           
     }
 
-    private Slot _getSlot(Item item){
+    public Slot _getSlot(Item item){ ////
         for(int i=0; i<transform.childCount; i++){
             Slot slotObj = transform.GetChild(i).GetComponent<Slot>();
             if(slotObj.item.ID == item.ID){
@@ -59,9 +59,15 @@ public class Slots : MonoBehaviour
         _hand.sprite = null;
         print("HIDE");
     }
+
+
+
+
+
     
     /*
     private void createSlotList(){
+        _slotsList.Clear();
         for (int i = 0; i < transform.childCount; i++)
         {
             Slot slot = transform.GetChild(i).GetComponent<Slot>();

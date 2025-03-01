@@ -73,15 +73,17 @@ public class Inventory : MonoBehaviour
         {
             _selectedIndex = (_selectedIndex + 1) % _inventory.Count;
             UpdateSelectedItem();
-            _frame.transform.position = _frame.transform.position + new Vector3(70, 0, 0);
+            _frame.transform.position = _frame.transform.position + new Vector3(90, 0, 0);
+            
         }
         else if (scroll < 0f)
         {
             _selectedIndex = (_selectedIndex - 1 + _inventory.Count) % _inventory.Count;
             UpdateSelectedItem();
-            _frame.transform.position = _frame.transform.position - new Vector3(70, 0, 0);
+            _frame.transform.position = _frame.transform.position - new Vector3(90, 0, 0);
+            //_framePositioning();
         }
-
+        
         if (Input.GetKeyDown(KeyCode.B))
         {
             _inventoryUI.SelectItem(_inventory[_selectedIndex]);
@@ -96,8 +98,10 @@ public class Inventory : MonoBehaviour
         Item selectedItem = _inventory[_selectedIndex];
         Debug.Log("Selected Item: " + selectedItem.Name);
         return selectedItem;
+    }
 
-
+    private void _framePositioning(){
+       _frame.transform.position = _inventoryUI.GetSelectedSlot().transform.position;
     }
 
    
