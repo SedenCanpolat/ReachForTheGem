@@ -8,19 +8,9 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private float _angle;
 
     [SerializeField] private LayerMask _layerMask;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        IsInView();
-    }
-
-   private bool IsInView()
-{
+  
+  
+   public bool IsInView(){
     float seeAngle = 0;
     Collider[] collidersOnEyes = Physics.OverlapSphere(transform.position, _radius, _layerMask);
     foreach (Collider collider in collidersOnEyes)
@@ -59,6 +49,8 @@ public class FieldOfView : MonoBehaviour
     }
     return false;
 }
+
+
 /*
 
    void OnDrawGizmos() 
