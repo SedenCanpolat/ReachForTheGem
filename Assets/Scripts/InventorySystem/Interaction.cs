@@ -80,12 +80,6 @@ public class Interaction : MonoBehaviour
 
      [SerializeField] private FieldOfView FOV;
 
-    void Start()
-    {
-     
-    }
-
-
      private Interactable _raycast(){
           Interactable seen = null;
           RaycastHit raycastHit;

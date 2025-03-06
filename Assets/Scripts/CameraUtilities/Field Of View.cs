@@ -11,18 +11,24 @@ public class FieldOfView : MonoBehaviour
   
   
     public bool IsInView(out RaycastHit hit){
-        float seeAngle = 0;
+        
         hit = new RaycastHit();
 
         Collider[] collidersOnEyes = Physics.OverlapSphere(transform.position, _radius, _layerMask);
         foreach (Collider collider in collidersOnEyes)
         {
             Vector3 targetDirection = (collider.transform.position - transform.position).normalized;
-            seeAngle = Vector3.Angle(transform.forward, targetDirection);
+            float seeAngle = Vector3.Angle(transform.forward, targetDirection);
             if (seeAngle <= _angle)
             {
                 print("AREA");
                 float distanceToTarget = Vector3.Distance(transform.position, collider.transform.position);
+
+                if (distanceToTarget < 0.01f)
+                {
+                    Debug.Log("Target is extremely close. Considered in view.");
+                    return true;
+                }
 
                 //RaycastHit hit;
                 if (Physics.Raycast(transform.position, targetDirection, out hit, distanceToTarget))
@@ -51,11 +57,6 @@ public class FieldOfView : MonoBehaviour
             }
         }
         return false;
-}
-
-    void Start()
-    {
-        //_interaction.OnInteracted += CanView;
     }
 
 

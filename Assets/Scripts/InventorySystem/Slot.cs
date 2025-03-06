@@ -17,10 +17,7 @@ public class Slot : MonoBehaviour//, IPointerDownHandler
             print("Click");
         }
 
-    */
-    //public void ItemSelection(){
-
-   
+    */   
 
 
     public void SetSlot(Item item){
