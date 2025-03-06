@@ -24,12 +24,6 @@ public class FieldOfView : MonoBehaviour
                 print("AREA");
                 float distanceToTarget = Vector3.Distance(transform.position, collider.transform.position);
 
-                if (distanceToTarget < 0.01f)
-                {
-                    Debug.Log("Target is extremely close. Considered in view.");
-                    return true;
-                }
-
                 //RaycastHit hit;
                 if (Physics.Raycast(transform.position, targetDirection, out hit, distanceToTarget))
                 {
