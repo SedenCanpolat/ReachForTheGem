@@ -2524,7 +2524,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1515027830}
-  _speed: 5
+  _speed: 3
+  _rotationSpeed: 15
+  _maxSeeAngle: 90
 --- !u!1 &795983659
 GameObject:
   m_ObjectHideFlags: 0
