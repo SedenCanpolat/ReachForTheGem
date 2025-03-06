@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private float _speed;
     private FieldOfView _fieldOfView;
+    private RaycastHit _raycastHit;
     
     void Start()
     {
@@ -16,7 +17,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if(_fieldOfView.IsInView()){
+
+        if(_fieldOfView.IsInView(out _raycastHit)){
             transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
         }
     }

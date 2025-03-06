@@ -9,6 +9,8 @@ public class Interaction : MonoBehaviour
      public Func<bool> CheckCanInteract;
      public Action OnInteracted;
 
+     public Func<bool> CanView;
+
      void Update(){
           
           var seenObject = _raycast();
@@ -76,12 +78,27 @@ public class Interaction : MonoBehaviour
           
      }
 
+     [SerializeField] private FieldOfView FOV;
+
+    void Start()
+    {
+     
+    }
+
+
      private Interactable _raycast(){
           Interactable seen = null;
           RaycastHit raycastHit;
-          var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          if(Physics.Raycast(ray,out raycastHit)){
-               raycastHit.collider.TryGetComponent(out seen);
+         
+          
+          if (FOV.IsInView(out raycastHit))
+          {
+              Debug.Log("I see: " + raycastHit.transform.name);
+          
+
+          //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+          //if(Physics.Raycast(ray, out raycastHit)){
+              raycastHit.collider.TryGetComponent(out seen);
           }
           return seen;
      }
