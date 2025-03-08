@@ -17,23 +17,29 @@ public class EnemyMovement : MonoBehaviour
     private float _rotation;
     private CharacterController _controller;
     private float _movedDistance = 0f;
+    private float _originalSpeed;
     
     void Start()
     {
         _fieldOfView = GetComponent<FieldOfView>();
         _startRotation = transform.rotation;
         _controller = GetComponent<CharacterController>();
-        
+        _originalSpeed = _speed;
     }
 
     void Update()
-    {
-        
-        _patrol();
-        
+    {         
         if (_fieldOfView.IsInView(out _raycastHit))
         {
-            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
+            StopAllCoroutines();
+            _speed = _originalSpeed;
+            //transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
+            Vector3 direction = (_player.transform.position - transform.position).normalized;
+            _controller.Move(direction * _speed * Time.deltaTime);
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+        else{
+            _patrol();
         }
     }
 
@@ -47,15 +53,15 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(_lookAround(10));
             _movedDistance = 0f;
         }
-        
+
         transform.rotation = Quaternion.LookRotation(moveAmount.normalized);
     }
 
     private IEnumerator _lookAround(float time){
         float actualSpeed = _speed;
-        _speed *= 0;
+        _speed = 0f;
         float elapsedTime = 0f;
-        while(elapsedTime < time){
+        while(elapsedTime < time && !_fieldOfView.IsInView(out _raycastHit)){
             _rotation += _directionIndicator * _rotationSpeed * Time.deltaTime;
         
             if (_rotation >= _maxSeeAngle || _rotation <= -_maxSeeAngle)
