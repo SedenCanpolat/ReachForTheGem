@@ -2301,7 +2301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.1
+      value: -42.3
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2309,7 +2309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.36
+      value: -21.8
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2524,9 +2524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1515027830}
-  _speed: 3
-  _rotationSpeed: 15
+  _speed: 5
+  _rotationSpeed: 55
   _maxSeeAngle: 90
+  _walkDistance: 20
+  isRight: 0
 --- !u!1 &795983659
 GameObject:
   m_ObjectHideFlags: 0
