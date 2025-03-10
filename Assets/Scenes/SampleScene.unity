@@ -4469,7 +4469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb008ea5dcebb92429bd656bf499602b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 5.5
   _rotationSpeed: 2
 --- !u!143 &1515027832
 CharacterController:

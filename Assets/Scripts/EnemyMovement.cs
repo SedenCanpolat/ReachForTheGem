@@ -18,6 +18,8 @@ public class EnemyMovement : MonoBehaviour
     private CharacterController _controller;
     private float _movedDistance = 0f;
     private float _originalSpeed;
+    private bool _isChasing = false;
+    private Vector3 _startPos;
     
     void Start()
     {
@@ -25,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
         _startRotation = transform.rotation;
         _controller = GetComponent<CharacterController>();
         _originalSpeed = _speed;
+        _startPos = transform.position;
     }
 
     void Update()
@@ -37,10 +40,28 @@ public class EnemyMovement : MonoBehaviour
             Vector3 direction = (_player.transform.position - transform.position).normalized;
             _controller.Move(direction * _speed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(direction);
+            _isChasing = true;
         }
+        
         else{
-            _patrol();
+            if(_isChasing){
+                print("RUN");
+                //StartCoroutine(_lookAround(7));
+                Vector3 turnBackDirection = (_startPos - transform.position).normalized;
+                _controller.Move(turnBackDirection * _speed * Time.deltaTime);
+                transform.rotation = Quaternion.LookRotation(turnBackDirection);
+
+                if (Vector3.Distance(transform.position, _startPos) < 0.1f)
+                {
+                    _isChasing = false;
+                }
+            }
+            //if(!_isChasing) _patrol();
+             else _patrol();
         }
+
+        
+        
     }
 
     private void _patrol(){
@@ -50,11 +71,15 @@ public class EnemyMovement : MonoBehaviour
         _movedDistance += moveAmount.magnitude;
         if (_movedDistance >= _walkDistance)
         {
-            StartCoroutine(_lookAround(10));
+            StartCoroutine(_lookAround(7));
             _movedDistance = 0f;
         }
 
+        if (moveAmount != Vector3.zero)
+        {
         transform.rotation = Quaternion.LookRotation(moveAmount.normalized);
+        }
+        //transform.forward = Vector3.right;
     }
 
     private IEnumerator _lookAround(float time){
