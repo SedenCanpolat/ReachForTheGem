@@ -14,6 +14,19 @@ public class GameManagement : MonoBehaviour
         instance = this;
     }
 
+    void Update()
+    {
+        
+        if(Input.GetKeyDown(KeyCode.R)){
+            lostScreen.SetActive(false);
+            isGameRestarted = true; 
+            isGameOver = false;
+            //print(isGameOver);
+        }
+
+        
+    }
+
 
 
     public void LostGame(){
@@ -22,5 +35,6 @@ public class GameManagement : MonoBehaviour
     }
 
     public bool isGameOver { get; private set; } = false;
+    public bool isGameRestarted { get; private set; } = false;
 
 }

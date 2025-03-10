@@ -7,19 +7,23 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _controller;
     [SerializeField] private float _speed = 5;
     [SerializeField] private  float _rotationSpeed;
+    private float _originalSpeed;
     
     
     private void Start() {
         _controller = GetComponent<CharacterController>();
+        _originalSpeed = _speed;
     }
 
     void Update()
     {
         if(GameManagement.instance.isGameOver){
             _speed = 0;
-            return;
         } 
-        
+        if(GameManagement.instance.isGameRestarted){
+            _speed = _originalSpeed; 
+        }
+
         float moveX = Input.GetAxis("Horizontal"); 
         float moveZ = Input.GetAxis("Vertical");
 

@@ -36,7 +36,13 @@ public class EnemyMovement : MonoBehaviour
             StopAllCoroutines();
             _speed = 0;
             return;
-        }         
+        }
+
+        if (GameManagement.instance.isGameRestarted)
+        {
+            _speed = _originalSpeed;
+        }  
+               
         if (_fieldOfView.IsInView(out _raycastHit))
         {
             StopAllCoroutines();
