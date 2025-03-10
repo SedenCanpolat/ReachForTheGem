@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(GameManagement.instance.isGameOver){
+            _speed = 0;
+            return;
+        } 
+        
         float moveX = Input.GetAxis("Horizontal"); 
         float moveZ = Input.GetAxis("Vertical");
 

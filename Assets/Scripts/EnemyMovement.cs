@@ -31,15 +31,24 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void Update()
-    {         
+    {
+        if(GameManagement.instance.isGameOver){
+            StopAllCoroutines();
+            _speed = 0;
+            return;
+        }         
         if (_fieldOfView.IsInView(out _raycastHit))
         {
             StopAllCoroutines();
             _speed = _originalSpeed;
             //transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
-            Vector3 direction = (_player.transform.position - transform.position).normalized;
+            Vector3 enemyPlayerDifference = _player.transform.position - transform.position;
+            Vector3 direction = enemyPlayerDifference.normalized;
             _controller.Move(direction * _speed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(direction);
+            if(enemyPlayerDifference.magnitude <= 2.63){
+                GameManagement.instance.LostGame();
+            }
             _isChasing = true;
         }
         
