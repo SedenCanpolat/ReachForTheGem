@@ -30,17 +30,26 @@ public class EnemyMovement : MonoBehaviour
         _startPos = transform.position;
     }
 
+    private void _resetEnemyPosition()
+    {
+        _controller.enabled = false;  
+        transform.position = _startPos; 
+        _controller.enabled = true;  
+    }
+
     void Update()
     {
         if(GameManagement.instance.isGameOver){
-            StopAllCoroutines();
-            _speed = 0;
+            //_speed = 0;
+            
+            _resetEnemyPosition();
             return;
         }
 
         if (GameManagement.instance.isGameRestarted)
         {
-            _speed = _originalSpeed;
+            
+            //_speed = _originalSpeed;
         }  
                
         if (_fieldOfView.IsInView(out _raycastHit))
@@ -71,8 +80,10 @@ public class EnemyMovement : MonoBehaviour
                     _isChasing = false;
                 }
             }
+            
             //if(!_isChasing) _patrol();
-             else _patrol();
+            else _patrol();
+        
         }
 
         

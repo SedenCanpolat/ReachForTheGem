@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     [SerializeField] private GameObject lostScreen;
+    private GeneralTransition _generalTransition;
+
     public static GameManagement instance;
     private void Awake() {
         if (instance != null && instance != this) {
@@ -14,24 +16,32 @@ public class GameManagement : MonoBehaviour
         instance = this;
     }
 
+    void Start()
+    {
+        _generalTransition = gameObject.GetComponent<GeneralTransition>();
+    }
+
     void Update()
     {
         
         if(Input.GetKeyDown(KeyCode.R)){
-            lostScreen.SetActive(false);
-            isGameRestarted = true; 
-            isGameOver = false;
-            //print(isGameOver);
+            _gameRestart();
         }
-
-        
+    }
+    private void _gameRestart(){
+        lostScreen.SetActive(false);
+        _generalTransition.SceneChangend();
+        isGameRestarted = true; 
+        isGameOver = false;
     }
 
 
-
     public void LostGame(){
-        lostScreen.SetActive(true);
+        _generalTransition.MakeTransition();
         isGameOver = true;
+        isGameRestarted = false;
+        //lostScreen.GetComponentInParent<Canvas>().sortingOrder = 5;
+        lostScreen.SetActive(true);
     }
 
     public bool isGameOver { get; private set; } = false;
