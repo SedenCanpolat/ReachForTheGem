@@ -13,7 +13,7 @@ public class FieldOfView : MonoBehaviour
     public bool IsInView(out RaycastHit hit){
         
         hit = new RaycastHit();
-
+        Vector3 wantedAreaAmount = new Vector3(0, 0, transform.localScale.z);
         Collider[] collidersOnEyes = Physics.OverlapSphere(transform.position, _radius, _layerMask);
         foreach (Collider collider in collidersOnEyes)
         {
@@ -22,13 +22,12 @@ public class FieldOfView : MonoBehaviour
             if (seeAngle <= _angle)
             {
                 print("AREA");
-                float distanceToTarget = Vector3.Distance(transform.position, collider.transform.position);
-
+                float distanceToTarget = Vector3.Distance(transform.position, collider.transform.position); //collider.ClosestPoint(transform.position));
                 //RaycastHit hit;
                 if (Physics.Raycast(transform.position, targetDirection, out hit, distanceToTarget))
                 {
                     Debug.Log("First object hit: " + hit.transform.name);
-                    
+        
                     int hitLayer = hit.transform.gameObject.layer;
                     // Check if the hit layer is included in the _layerMask
                     if ((_layerMask.value & (1 << hitLayer)) != 0)
