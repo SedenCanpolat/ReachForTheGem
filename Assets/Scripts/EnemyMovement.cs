@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
@@ -20,9 +20,11 @@ public class EnemyMovement : MonoBehaviour
     private float _originalSpeed;
     private bool _isChasing = false;
     private Vector3 _startPos;
+    [SerializeField] private NavMeshAgent navMeshAgent;
     
     void Start()
     {
+
         _fieldOfView = GetComponent<FieldOfView>();
         _startRotation = transform.rotation;
         _controller = GetComponent<CharacterController>();
@@ -58,9 +60,12 @@ public class EnemyMovement : MonoBehaviour
             _speed = _originalSpeed;
             //transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
             Vector3 enemyPlayerDifference = _player.transform.position - transform.position;
+            navMeshAgent.SetDestination(_player.transform.position);
+            /*
             Vector3 direction = enemyPlayerDifference.normalized;
             _controller.Move(direction * _speed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(direction);
+            */
             if(enemyPlayerDifference.magnitude <= 2.63){
                 GameManagement.instance.LostGame();
             }
