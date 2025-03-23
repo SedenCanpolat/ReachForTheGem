@@ -19,9 +19,7 @@ public class EnemyMovement : MonoBehaviour
     private float _movedDistance = 0f;
     private float _originalSpeed;
     private bool _isChasing = false;
-    private Vector3 _startPos;
-    [SerializeField] private NavMeshAgent navMeshAgent;
-    
+    private Vector3 _startPos;    
     void Start()
     {
 
@@ -60,8 +58,6 @@ public class EnemyMovement : MonoBehaviour
             _speed = _originalSpeed;
             //transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
             Vector3 enemyPlayerDifference = _player.transform.position - transform.position;
-            //navMeshAgent.SetDestination(_player.transform.position);
-            
             Vector3 direction = enemyPlayerDifference.normalized;
             _controller.Move(direction * _speed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(direction);

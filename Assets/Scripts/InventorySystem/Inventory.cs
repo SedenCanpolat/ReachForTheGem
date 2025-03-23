@@ -41,7 +41,6 @@ public class Inventory : MonoBehaviour
         if(item != null){
             _inventory.Remove(item);
             _inventoryUI.OnItemRemoved(item);
-           // _frame.SetActive(false); 
         }
         else{
             Debug.LogError("Item is null");
@@ -70,7 +69,6 @@ public class Inventory : MonoBehaviour
 
     public Item UpdateSelectedItem()
     {
-        
         _frame.transform.position = _inventoryUI.GetSelectedSlot(_selectedIndex).transform.position;
         Item selectedItem = _inventory[_selectedIndex];
         Debug.Log("Selected Item: " + selectedItem.Name);

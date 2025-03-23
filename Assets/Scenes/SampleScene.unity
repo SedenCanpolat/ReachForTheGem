@@ -726,15 +726,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 31.7
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.58
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.3
+      value: -30.6
       objectReference: {fileID: 0}
     - target: {fileID: 5387605587794799829, guid: f21fa0bf147d8b9408899e019488eb85, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1166,13 +1166,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226803416}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 47, y: 1.64, z: 13.9}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.8, y: 1.64, z: 11.18}
   m_LocalScale: {x: 2, y: 2, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 533220345}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &226803418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEmpty: 0
-  _item: {fileID: 8908051510129080694, guid: 0365147ccb7e32646a0647866cd6e1a2, type: 3}
+  _item: {fileID: 1193198723}
 --- !u!65 &226803420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEmpty: 0
-  _itemInside: {fileID: 4799580416227506365, guid: e0d475914ec386f4bb080ad6c2dd228f, type: 3}
+  _itemInside: {fileID: 1218836903}
   _key: {fileID: 11400000, guid: a06dc085602ab7d4aaa42cb0800bceca, type: 2}
   IsHappend: 0
   _isSecond: 0
@@ -3502,7 +3502,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 5375612262743126417, guid: 33757112e4c49764abe4acaf8bda294d, type: 3}
   inventoryUI: {fileID: 1388851084}
-  _frame: {fileID: 1962602002}
   _hand: {fileID: 85576364}
   SelectedIndex: 0
 --- !u!114 &994494949
@@ -3849,6 +3848,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1193198723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8908051510129080694, guid: 0365147ccb7e32646a0647866cd6e1a2, type: 3}
+  m_PrefabInstance: {fileID: 5445756786172948476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1218836903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4799580416227506365, guid: e0d475914ec386f4bb080ad6c2dd228f, type: 3}
+  m_PrefabInstance: {fileID: 7315673559664210406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1221143877
 GameObject:
   m_ObjectHideFlags: 0
@@ -4087,7 +4096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEmpty: 0
-  _item: {fileID: 8908051510129080694, guid: 0365147ccb7e32646a0647866cd6e1a2, type: 3}
+  _item: {fileID: 1193198723}
 --- !u!65 &1323715734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5753,7 +5762,7 @@ Transform:
   m_GameObject: {fileID: 1912672198}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.4, y: 5.9, z: 11.65}
+  m_LocalPosition: {x: 19.92, y: 5.9, z: 11.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5894,7 +5903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEmpty: 0
-  _item: {fileID: 8908051510129080694, guid: 0365147ccb7e32646a0647866cd6e1a2, type: 3}
+  _item: {fileID: 1193198723}
 --- !u!65 &1932178316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6054,7 +6063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEmpty: 0
-  _item: {fileID: 4799580416227506365, guid: e0d475914ec386f4bb080ad6c2dd228f, type: 3}
+  _item: {fileID: 1218836903}
 --- !u!65 &1984136452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6251,7 +6260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEmpty: 0
-  _itemInside: {fileID: 4799580416227506365, guid: e0d475914ec386f4bb080ad6c2dd228f, type: 3}
+  _itemInside: {fileID: 1218836903}
   _key: {fileID: 11400000, guid: a06dc085602ab7d4aaa42cb0800bceca, type: 2}
   IsHappend: 0
   _isSecond: 0
