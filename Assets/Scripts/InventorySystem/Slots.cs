@@ -23,12 +23,12 @@ public class Slots : MonoBehaviour
     }
 
     public void RemoveSlot(Item item){
-        _getSlot(item)?.DestroySlot();
+        _getSlotByItem(item)?.DestroySlot();
         //Frame.SetActive(false);
         _hand.sprite = null;           
     }
 
-    public Slot _getSlot(Item item){ ////
+    public Slot _getSlotByItem(Item item){ ////
         for(int i=0; i<transform.childCount; i++){
             Slot slotObj = transform.GetChild(i).GetComponent<Slot>();
             if(slotObj.item.ID == item.ID){
@@ -38,15 +38,15 @@ public class Slots : MonoBehaviour
         return null;
     }
 
+    public Slot _getSlotByIndex(int idx){
+        return transform.GetChild(idx).GetComponent<Slot>();
+    }
+
 
     private Slot _selectedSlot;
-    public void ShowCursor(Item item){
+    public void ShowCursor(int idx){
         // cursor takip eden icon belirecek
-        _selectedSlot = _getSlot(Inventory.instance.UpdateSelectedItem());
-        //if (_selectedSlot == null) return;
-        _selectedSlot.transform.SetParent(transform.parent);
-        //Frame.SetActive(true);
-        //Frame.transform.position = _selectedSlot.transform.position;
+        _selectedSlot = _getSlotByIndex(idx);
         _hand.sprite = _selectedSlot.item.Icon;
         print("SHOW");
     }
@@ -54,7 +54,6 @@ public class Slots : MonoBehaviour
 
     public void HideCursor(){
         // cursor takip eden icon silinecek
-        _selectedSlot?.transform.SetParent(transform);
         _selectedSlot = null;
         _hand.sprite = null;
         print("HIDE");

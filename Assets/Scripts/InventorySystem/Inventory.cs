@@ -47,20 +47,6 @@ public class Inventory : MonoBehaviour
             Debug.LogError("Item is null");
         }
     }
-
-    /*
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            int idx = _inventoryUI.GetSelectIdx();
-            if (idx >= 0 && idx < _inventory.Count)
-            {
-                _inventoryUI.SelectItem(_inventory[idx]);
-            }
-        }
-    }
-    */
     
 
 
@@ -71,38 +57,28 @@ public class Inventory : MonoBehaviour
         _frame.SetActive(true);
         if (scroll > 0f)
         {
-            _selectedIndex = (_selectedIndex + 1) % _inventory.Count;
-            UpdateSelectedItem();
-            _frame.transform.position = _frame.transform.position + new Vector3(90, 0, 0);
-            
+            _selectedIndex = (_selectedIndex + 1) % _inventory.Count;            
         }
         else if (scroll < 0f)
         {
-            _selectedIndex = (_selectedIndex - 1 + _inventory.Count) % _inventory.Count;
-            UpdateSelectedItem();
-            _frame.transform.position = _frame.transform.position - new Vector3(90, 0, 0);
-            //_framePositioning();
+            _selectedIndex = (_selectedIndex - 1 + _inventory.Count) % _inventory.Count;      
         }
         
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            _inventoryUI.SelectItem(_inventory[_selectedIndex]);
-        }
-        
+        UpdateSelectedItem();
 
     }
 
     public Item UpdateSelectedItem()
     {
-        //_frame.transform.position = _inventory[_selectedIndex].transform.position;
+        
+        _frame.transform.position = _inventoryUI.GetSelectedSlot(_selectedIndex).transform.position;
         Item selectedItem = _inventory[_selectedIndex];
         Debug.Log("Selected Item: " + selectedItem.Name);
+        _inventoryUI.SelectItem(_inventory[_selectedIndex], _selectedIndex);
         return selectedItem;
     }
 
-    private void _framePositioning(){
-       _frame.transform.position = _inventoryUI.GetSelectedSlot().transform.position;
-    }
+   
 
    
 }

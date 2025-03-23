@@ -23,6 +23,7 @@ public class LockedObject : Interactable
 
     public override bool Interact(Item item)
     {
+        bool isInteracted = false;
         if(item != null && item.ID == _key.ID){
             Debug.Log("Door Opened :)");
             InsideOut insideOut = GetComponent<InsideOut>();
@@ -31,6 +32,7 @@ public class LockedObject : Interactable
                     Debug.Log("Empty");
                     insideOut.NoItem();
                     IsHappend = true;
+                    isInteracted = true;
                 }
                 else{
                     if (_itemInside != null)
@@ -38,6 +40,7 @@ public class LockedObject : Interactable
                         Debug.Log("Not Empty");
                         insideOut.ItemExist(_itemInside);
                         IsHappend = true;
+                        isInteracted = true;
                     }
                 }
             }
@@ -58,12 +61,12 @@ public class LockedObject : Interactable
                         StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Left));
                     }
                     
-                
+                isInteracted = true;
                 IsHappend = true;
                 
             }
-            return true;
+        
         }
-        return false;
+        return isInteracted;
     }   
 }

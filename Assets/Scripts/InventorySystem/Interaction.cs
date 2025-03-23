@@ -94,6 +94,7 @@ public class Interaction : MonoBehaviour
           //if(Physics.Raycast(ray, out raycastHit)){
               raycastHit.collider.TryGetComponent(out seen);
           }
+          
           return seen;
      }
     

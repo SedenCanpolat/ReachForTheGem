@@ -17,13 +17,13 @@ public class InventoryUI : MonoBehaviour
 
     public Item SelectedItem {get; private set;}
 
-    public void SelectItem(Item item){
+    public void SelectItem(Item item, int idx){
         if(Inventory.instance.ItemOnHand != null){
             UnSelectItem();
             print("HANDS FULL");
         }
         SelectedItem = item;
-        slots.ShowCursor(item);
+        slots.ShowCursor(idx);
     }
 
     public void UnSelectItem(){
@@ -31,8 +31,8 @@ public class InventoryUI : MonoBehaviour
         slots.HideCursor();
     }
 
-    public Slot GetSelectedSlot(){
-        return slots._getSlot(Inventory.instance.UpdateSelectedItem());
+    public Slot GetSelectedSlot(int idx){
+        return slots._getSlotByIndex(idx);
     }
 
 

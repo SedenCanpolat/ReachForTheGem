@@ -25,7 +25,7 @@ public class UnLockedObject : Interactable
             }
         }
 
-        return true;
+        return false;
     }
    
 }
