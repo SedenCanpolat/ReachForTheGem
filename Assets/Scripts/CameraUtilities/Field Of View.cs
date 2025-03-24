@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    [SerializeField] private float _radius;
+   // [SerializeField] private float _radius;
+    public float _radius; ///
     //[SerializeField] private float _angle;
 
     [SerializeField] private LayerMask _layerMask;

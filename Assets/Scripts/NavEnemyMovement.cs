@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class NavEnemyMovement : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
-    [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _maxSeeAngle;
     [SerializeField] private float _walkDistance;
@@ -16,22 +15,19 @@ public class NavEnemyMovement : MonoBehaviour
     private Quaternion _startRotation;
     private float _directionIndicator = 1f; 
     private float _rotation;
-    private CharacterController _controller;
-    private float _movedDistance = 0f;
-    private float _originalSpeed;
-    private bool _isChasing = false;
     private Vector3 _startPos;
     [SerializeField] private NavMeshAgent navMeshAgent;
 
     private enum _enemyState {Patrol, Chase, Return, LookAround};
     private _enemyState _currentState;
+
+    private float _elapsedTime;
+    private int _currentDirection = 1;
     
     void Start()
     {
         _fieldOfView = GetComponent<FieldOfView>();
         _startRotation = transform.rotation;
-        _controller = GetComponent<CharacterController>();
-        _originalSpeed = _speed;
         _startPos = transform.position;
         _currentState = _enemyState.Patrol;
     }
@@ -62,28 +58,29 @@ public class NavEnemyMovement : MonoBehaviour
 
     private void _resetEnemyPosition()
     {
-        _controller.enabled = false;  
-        transform.position = _startPos; 
-        _controller.enabled = true;
+        navMeshAgent.enabled = false;
+        transform.position = _startPos;
+        navMeshAgent.enabled = true;
         _currentState = _enemyState.Patrol;  
     }
 
 
     private void _chase(){
-        Vector3 enemyPlayerDifference = _player.transform.position - transform.position;
-        float distance = enemyPlayerDifference.magnitude;
-
-        if (distance > 2.63f && distance < 8f)
+        Vector3 enemyPlayerDifference = _player.transform.position - transform.position;        
+        print("ED: " + enemyPlayerDifference.magnitude);
+        if (enemyPlayerDifference.magnitude > 2.63f && enemyPlayerDifference.magnitude < 8f)
         {
+            _fieldOfView._radius = 8;
             navMeshAgent.SetDestination(_player.transform.position);
         }
-        else if (distance <= 2.63f)
+        else if (enemyPlayerDifference.magnitude <= 2.63f)
         {
             GameManagement.instance.LostGame();
         }
 
         if (!_fieldOfView.IsInView(out _raycastHit))
         {
+            _fieldOfView._radius = 5;
             _currentState = _enemyState.Return;
         }
         
@@ -92,7 +89,7 @@ public class NavEnemyMovement : MonoBehaviour
     private void _returnBack(){
         navMeshAgent.SetDestination(_startPos);
 
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
         {
             _currentState = _enemyState.Patrol;
         } 
@@ -105,7 +102,6 @@ public class NavEnemyMovement : MonoBehaviour
         if (_fieldOfView.IsInView(out _raycastHit))
         {
             StopAllCoroutines();
-            navMeshAgent.speed = _originalSpeed;
             _currentState = _enemyState.Chase;
         }
     }
@@ -116,7 +112,7 @@ public class NavEnemyMovement : MonoBehaviour
         Vector3 targetPosition = _startPos + moveDirection * _walkDistance * _currentDirection;
         navMeshAgent.SetDestination(targetPosition);
 
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
         {
             _currentDirection *= -1;
             _currentState = _enemyState.LookAround;
@@ -124,21 +120,18 @@ public class NavEnemyMovement : MonoBehaviour
         else{
             _checkForPlayerVisibility();
         }
-       
-        
       
     }
 
-    private float elapsedTime;
-    private int _currentDirection = 1;
+    
     private void _lookAround(float time){
         
         if(!navMeshAgent.isStopped){
             navMeshAgent.isStopped = true; 
-            elapsedTime = 0f;
+            _elapsedTime = 0f;
         }
         
-        if(elapsedTime < time && !_fieldOfView.IsInView(out _raycastHit)){
+        if(_elapsedTime < time && !_fieldOfView.IsInView(out _raycastHit)){
             _rotation += _directionIndicator * _rotationSpeed * Time.deltaTime;
         
             if (_rotation >= _maxSeeAngle || _rotation <= -_maxSeeAngle)
@@ -147,14 +140,12 @@ public class NavEnemyMovement : MonoBehaviour
             }
 
             transform.rotation = _startRotation * Quaternion.Euler(0, _rotation, 0);
-            elapsedTime += Time.deltaTime;
+            _elapsedTime += Time.deltaTime;
 
         }
         else{
-            elapsedTime = 0f;
-            navMeshAgent.isStopped = false;
-            _speed *= -1;
-            
+            _elapsedTime = 0f;
+            navMeshAgent.isStopped = false;            
             _currentState = _enemyState.Patrol;
         }
         
