@@ -67,7 +67,6 @@ public class NavEnemyMovement : MonoBehaviour
 
     private void _chase(){
         Vector3 enemyPlayerDifference = _player.transform.position - transform.position;        
-        print("ED: " + enemyPlayerDifference.magnitude);
         if (enemyPlayerDifference.magnitude > 2.63f && enemyPlayerDifference.magnitude < 8f)
         {
             _fieldOfView._radius = 8;
