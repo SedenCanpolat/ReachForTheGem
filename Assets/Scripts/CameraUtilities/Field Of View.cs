@@ -87,53 +87,5 @@ public class FieldOfView : MonoBehaviour
     }
 
 
-    /*
-
-       void OnDrawGizmos() 
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _radius); // Draw vision radius
-
-        Vector3 leftLimit = Quaternion.Euler(0, -_angle, 0) * transform.forward * _radius;
-        Vector3 rightLimit = Quaternion.Euler(0, _angle, 0) * transform.forward * _radius;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + leftLimit); // Left vision angle
-        Gizmos.DrawLine(transform.position, transform.position + rightLimit); // Right vision angle
-
-        Gizmos.color = Color.green;
-        Collider[] collidersOnEyes = Physics.OverlapSphere(transform.position, _radius, _layerMask);
-        for (int i = 0; i < collidersOnEyes.Length; i++) 
-        {
-            Vector3 targetDirection = (collidersOnEyes[i].transform.position - transform.position).normalized;
-            float seeAngle = Vector3.Angle(transform.forward, targetDirection);
-
-            if (seeAngle <= _angle) 
-            {
-                Gizmos.DrawLine(transform.position, collidersOnEyes[i].transform.position); // Line to detected objects
-            }
-        }
-    }
-    */
-
-    /*
-    private void OnDrawGizmos(){
-        Gizmos.color = Color. yellow;
-        Gizmos.DrawWireSphere(transform.position, _radius);
-        Vector3 fovLine1 = Quaternion.AngleAxis(_angle, transform.up) * transform.forward * _radius;
-        Vector3 fovLine2 = Quaternion.AngleAxis(-_angle, transform. up) * transform. forward * _radius;
-        Gizmos.color = Color. blue;
-        Gizmos.DrawRay(transform. position, fovLine1);
-        Gizmos.DrawRay(transform. position, fovLine2);
-        Gizmos.color = Color. red;
-        Collider[] collidersOnEyes = Physics.OverlapSphere(transform.position, _radius, _layerMask);
-        for(int i=0; i<collidersOnEyes.Length; i++){
-        Gizmos.DrawRay(transform.position, (collidersOnEyes[i].transform.position - transform. position). normalized * _radius);
-        }
-        Gizmos.color = Color. black;
-        Gizmos.DrawRay(transform. position, transform. forward * _radius);
-    }
-    */
-
 }
 
