@@ -23,11 +23,12 @@ public class GameManagement : MonoBehaviour
 
     void Update()
     {
-        
         if(Input.GetKeyDown(KeyCode.R)){
             _gameRestart();
         }
+        
     }
+
     private void _gameRestart(){
         lostScreen.SetActive(false);
         _generalTransition.SceneChangend();
