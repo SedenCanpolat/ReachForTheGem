@@ -22,7 +22,6 @@ public abstract class Countdowners : MonoBehaviour
         int minutes = Mathf.FloorToInt(_countdown / 60);
         int seconds = Mathf.FloorToInt(_countdown % 60);
         _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
     } 
 
 }    

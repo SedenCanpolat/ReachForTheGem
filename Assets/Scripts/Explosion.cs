@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Explosion : Countdowners
@@ -34,8 +35,10 @@ public class Explosion : Countdowners
         }
 
         if(CheckPlayerInExplosionArea(_explosionArea, _layerMask)){
+           
             _timerText.enabled = true;
             _counting = true;
+            
             if(_countend){
                 Debug.Log("GAME OVER");
                 GameManagement.instance.LostGame();
@@ -44,7 +47,6 @@ public class Explosion : Countdowners
         }
         if(_counting){
             if (_countdown > 0){
-                print("c:" + _countdown);
                 _countdown -= Time.deltaTime;
                 if (_countdown < 0){
                     _countdown = 0;
@@ -54,11 +56,10 @@ public class Explosion : Countdowners
         }
 
         if(_countend & !CheckPlayerInExplosionArea(_explosionArea, _layerMask)){
-            Debug.Log("Override");
-            _countdown = _startCountdown;
-            _countend = false;
-            _counting = false;
+            Debug.Log("Over");
+            Destroy(gameObject);
             _timerText.enabled = false;
+            return;
         }
        
         ClockFormatting(_countdown, _timerText);
