@@ -43,6 +43,7 @@ public class SecurityCamera : Countdowners
         }
         if(_counting){
             if (_countdown > 0){
+                print("c2:" + _countdown);
                 _countdown -= Time.deltaTime;
                 if (_countdown < 0){
                     _countdown = 0;
@@ -61,7 +62,6 @@ public class SecurityCamera : Countdowners
        
             
         
-        ClockFormatting(_countdown, _timerText);
         
         
     }
@@ -71,5 +71,9 @@ public class SecurityCamera : Countdowners
     {
         _timerText.enabled = false;
         _countdown = _startCountdown;
+        if (_timerText == null)
+    {
+        Debug.LogWarning("SecurityCamera: _timerText is not assigned!");
+    }
     } 
 }

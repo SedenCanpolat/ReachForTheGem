@@ -44,11 +44,11 @@ public class Explosion : Countdowners
         }
         if(_counting){
             if (_countdown > 0){
+                print("c:" + _countdown);
                 _countdown -= Time.deltaTime;
                 if (_countdown < 0){
                     _countdown = 0;
                     _countend = true;
-                    
                 } 
             }
         }
@@ -58,13 +58,14 @@ public class Explosion : Countdowners
             _countdown = _startCountdown;
             _countend = false;
             _counting = false;
-            //_timerText.enabled = false;
+            _timerText.enabled = false;
         }
        
         ClockFormatting(_countdown, _timerText);
         
     }
 
+    
 
     
 
@@ -90,5 +91,6 @@ public class Explosion : Countdowners
     {
         _timerText.enabled = false;
         _countdown = _startCountdown;
-    }  
+    }
+
 }
