@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-
-public class Explosion : Countdowners
+using TMPro;
+public class SecurityCamera : Countdowners
 {
     [SerializeField] private float _startCountdown;
     private float _countdown;
@@ -58,37 +57,19 @@ public class Explosion : Countdowners
             _countdown = _startCountdown;
             _countend = false;
             _counting = false;
-            //_timerText.enabled = false;
         }
        
+            
+        
         ClockFormatting(_countdown, _timerText);
+        
         
     }
 
-
-    
-
-
-/*
-    private bool _checkPlayerInExplosionArea()
-    {
-        Collider[] colliders = Physics.OverlapSphere(_explosionArea.transform.position, _explosionArea.transform.localScale.x, _layerMask);
-        if (colliders.Length > 0)
-        {
-            Debug.Log("Player detected in explosion area!");
-            return true;
-        }
-            
-        Debug.Log("Player out");
-        return false;
-            
-        
-    } 
-*/
 
     void Start()
     {
         _timerText.enabled = false;
         _countdown = _startCountdown;
-    }  
+    } 
 }
