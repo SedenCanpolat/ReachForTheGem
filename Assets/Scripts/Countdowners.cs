@@ -7,7 +7,8 @@ public abstract class Countdowners : MonoBehaviour
 {
     [SerializeField] protected float _startCountdown;
     protected float _countdown;
-    [SerializeField] protected TextMeshProUGUI _timerText;
+     [SerializeField] protected TextMeshProUGUI _timerText;
+    // [SerializeField] protected TMP_Text _timerText;
     [SerializeField] protected GameObject _explosionArea;
     protected bool _countend = false;
     protected bool _counting = false;

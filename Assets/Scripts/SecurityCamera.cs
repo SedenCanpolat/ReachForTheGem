@@ -17,7 +17,6 @@ public class SecurityCamera : Countdowners
                 _targetAngle = (_targetAngle == 45) ? 135 : 45;
             }
         }
-
     }
 
     protected override void AfterAction()
@@ -28,6 +27,5 @@ public class SecurityCamera : Countdowners
         _counting = false;
         _timerText.enabled = false;
     }
-
 
 }
