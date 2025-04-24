@@ -29,7 +29,7 @@ public class Interaction : MonoBehaviour
                }  
           }
 
-          if(Input.GetKeyDown(KeyCode.F)){//GetMouseButtonUp(0)){
+          if(Input.GetKeyDown(KeyCode.E)){//GetMouseButtonUp(0)){
                if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand && canInteract){
                     if(seenObject.Interact(Inventory.instance.ItemOnHand)){
                          var item = Inventory.instance.ItemOnHand;
@@ -40,41 +40,6 @@ public class Interaction : MonoBehaviour
                }
                Inventory.instance.EmptyHand();    
           }
-        
-          /*
-
-               var seenObject = _raycast();
-               
-               if(_playerDistance.CreateAreaForPlayer()){
-                    _playerDistance.ShowInteractText(_text);
-               }
-
-               else{
-                    _playerDistance.CloseInteractText(_text);
-               }
-
-               if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
-                    if(seenObject && seenObject.IsInteractable()){                         
-                         Debug.Log(seenObject.name);
-                         seenObject.Interact(null);
-                         _playerDistance.CloseInteractText(_text);
-                    }  
-               }
-
-               if(Input.GetKeyDown(KeyCode.E) && _playerDistance.CreateAreaForPlayer()){
-                    if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand){
-                         if(seenObject.Interact(Inventory.instance.ItemOnHand)){
-                              var item = Inventory.instance.ItemOnHand;
-                              print("item " + item);
-                              Inventory.instance.EmptyHand();
-                              Inventory.instance.RemoveItem(item);
-                         }
-                    }
-                    Inventory.instance.EmptyHand();    
-               }
-
-          */ 
-
           
      }
 

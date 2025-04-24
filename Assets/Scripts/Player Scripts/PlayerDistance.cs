@@ -28,7 +28,7 @@ public class PlayerDistance : MonoBehaviour
     }
 
     
-    public void ShowInteractText(){//, TextMeshProUGUI button){ {button.text}
+    public void ShowInteractText(){
         _text.text = $"Press E button";
         _text.gameObject.SetActive(true);
     }

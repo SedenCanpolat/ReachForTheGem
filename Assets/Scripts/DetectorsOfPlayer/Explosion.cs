@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Explosion : Countdowners
+public class Explosion : Countdowners, IResetUpdater
 {
     [SerializeField] private GameObject _bomb;
 
@@ -12,6 +12,13 @@ public class Explosion : Countdowners
         _timerText.enabled = false;
     }
 
+    public override void IRestarted()
+    {
+        base.IRestarted();
+        _bomb.SetActive(true);
+
+    }
+/*
     protected override void Update()
     {
         if (GameManagement.instance.isGameRestarted && !_restartHandled)
@@ -27,4 +34,5 @@ public class Explosion : Countdowners
 
         base.Update(); 
     }
+*/    
 }

@@ -34,6 +34,12 @@ public class GameManagement : MonoBehaviour
         _generalTransition.SceneChangend();
         isGameRestarted = true; 
         isGameOver = false;
+        StartCoroutine(_resetRestartFlag());
+    }
+
+    private IEnumerator _resetRestartFlag() {
+        yield return null; 
+        isGameRestarted = false;
     }
 
 

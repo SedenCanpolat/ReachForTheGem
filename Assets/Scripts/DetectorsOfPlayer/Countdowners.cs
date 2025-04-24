@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public abstract class Countdowners : MonoBehaviour
+public abstract class Countdowners : MonoBehaviour, IResetUpdater
 {
     [SerializeField] protected float _startCountdown;
     protected float _countdown;
@@ -52,18 +52,16 @@ public abstract class Countdowners : MonoBehaviour
 
     protected abstract void AfterAction();
 
-
+    
     protected virtual void GameManagementHandling(){
 
         if(GameManagement.instance.isGameOver){
-            _timerText.enabled = false;
-            _countend = false;
-            _counting = false;
+            IRestarted();
         }
 
         if (GameManagement.instance.isGameRestarted && !_restartHandled)
         {
-            _countdown = _startCountdown;
+            IRestarted();
             _restartHandled = true;
         }
 
@@ -101,6 +99,12 @@ public abstract class Countdowners : MonoBehaviour
     {
         _timerText.enabled = false;
         _countdown = _startCountdown;
-    } 
+    }
 
+    public virtual void IRestarted()
+    {   _timerText.enabled = false;
+        _countdown = _startCountdown;
+        _countend = false;
+        _counting = false;
+    }
 }    

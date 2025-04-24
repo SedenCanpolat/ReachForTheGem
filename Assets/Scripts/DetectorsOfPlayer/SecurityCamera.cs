@@ -22,10 +22,13 @@ public class SecurityCamera : Countdowners
     protected override void AfterAction()
     {
         Debug.Log("Override");
+        IRestarted();
+        /*
         _countdown = _startCountdown;
         _countend = false;
         _counting = false;
         _timerText.enabled = false;
+        */
     }
 
 }
