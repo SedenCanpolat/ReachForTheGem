@@ -1,6 +1,6 @@
-# Reach for Gem
+# Reach For The Gem
 
-**Reach for Gem** is a stealth-like 3D game developed using Unity.  
+**Reach For The Gem** is a stealth-like 3D game developed using Unity.  
 Players must find keys, overcome various obstacles waiting for them, and reach the gem without being caught by the enemy.
 
 ## 👨‍💻 Developer: Seden Canpolat
@@ -8,7 +8,7 @@ Players must find keys, overcome various obstacles waiting for them, and reach t
 I have been developing this game solo to enhance my coding skills. In this project, I implemented:
 
 - Player movement  
-- Field of view for both the player and enemy  
+- Field of view system for both the player and the enemy  
 - Camera controls that follow the player  
 - Enemy movement with and without AI  
 - Inventory system for both in-game use and UI  
