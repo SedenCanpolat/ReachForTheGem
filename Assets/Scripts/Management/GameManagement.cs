@@ -40,16 +40,16 @@ public class GameManagement : MonoBehaviour
                 isGameOver = false;
             }
         );
-        //StartCoroutine(_resetRestartFlag());
+        StartCoroutine(_resetRestartFlag());
         
     }
 
-/*
+
     private IEnumerator _resetRestartFlag() {
         yield return null; 
         isGameRestarted = false;
     }
-*/
+
 
     public void LostGame(){
         _generalTransition.EnterTransition(
