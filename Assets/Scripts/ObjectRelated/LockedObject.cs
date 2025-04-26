@@ -42,6 +42,9 @@ public class LockedObject : Interactable
                         IsHappend = true;
                         isInteracted = true;
                     }
+                    if(_itemInside == null){
+                        print("AAAA");
+                    }
                 }
             }
             else if(!IsHappend){

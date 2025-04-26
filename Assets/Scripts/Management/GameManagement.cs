@@ -29,26 +29,36 @@ public class GameManagement : MonoBehaviour
         
     }
 
+    // Interface fonksiyonunu çağırma
+    
+
     private void _gameRestart(){
-        lostScreen.SetActive(false);
-        _generalTransition.SceneChangend();
-        isGameRestarted = true; 
-        isGameOver = false;
-        StartCoroutine(_resetRestartFlag());
+        _generalTransition.EnterTransition(
+            () => {
+                lostScreen.SetActive(false);
+                isGameRestarted = true; 
+                isGameOver = false;
+            }
+        );
+        //StartCoroutine(_resetRestartFlag());
+        
     }
 
+/*
     private IEnumerator _resetRestartFlag() {
         yield return null; 
         isGameRestarted = false;
     }
-
+*/
 
     public void LostGame(){
-        _generalTransition.MakeTransition();
-        isGameOver = true;
-        isGameRestarted = false;
-        //lostScreen.GetComponentInParent<Canvas>().sortingOrder = 5;
-        lostScreen.SetActive(true);
+        _generalTransition.EnterTransition(
+            () => {
+                isGameOver = true;
+                isGameRestarted = false;
+                lostScreen.SetActive(true);
+            }
+        );
     }
 
     public bool isGameOver { get; private set; } = false;
