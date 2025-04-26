@@ -29,7 +29,7 @@ public class Interaction : MonoBehaviour
                }  
           }
 
-          if(Input.GetKeyDown(KeyCode.E)){//GetMouseButtonUp(0)){
+          if(Input.GetKeyDown(KeyCode.E)){//GetMouseButtonUp(0)) F{
                if(seenObject && seenObject.IsInteractable() && Inventory.instance.ItemOnHand && canInteract){
                     if(seenObject.Interact(Inventory.instance.ItemOnHand)){
                          var item = Inventory.instance.ItemOnHand;

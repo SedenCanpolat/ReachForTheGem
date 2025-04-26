@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     [SerializeField] private GameObject lostScreen;
+    [SerializeField] private GameObject winScreen;
     private GeneralTransition _generalTransition;
 
     public static GameManagement instance;
@@ -38,6 +39,7 @@ public class GameManagement : MonoBehaviour
                 lostScreen.SetActive(false);
                 isGameRestarted = true; 
                 isGameOver = false;
+                winScreen.SetActive(false);
             }
         );
         StartCoroutine(_resetRestartFlag());
@@ -51,15 +53,20 @@ public class GameManagement : MonoBehaviour
     }
 
 
-    public void LostGame(){
+    public void LostGame(int situation = 0){
         _generalTransition.EnterTransition(
             () => {
                 isGameOver = true;
                 isGameRestarted = false;
-                lostScreen.SetActive(true);
+                if (situation == 0)
+                    lostScreen.SetActive(true);
+                else
+                    winScreen.SetActive(true);
+                
             }
         );
     }
+
 
     public bool isGameOver { get; private set; } = false;
     public bool isGameRestarted { get; private set; } = false;
