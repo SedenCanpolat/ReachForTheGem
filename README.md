@@ -3,6 +3,8 @@
 **Reach For The Gem** is a stealth-like 3D game developed using Unity.  
 Players must find keys, overcome various obstacles waiting for them, and reach the gem without being caught by the enemy.
 
+🎮 **Play From Here**: [https://seden.itch.io/reach-for-the-jem](https://seden.itch.io/reach-for-the-jem)
+
 ## 👨‍💻 Developer: Seden Canpolat
 
 I have been developing this game solo to enhance my coding skills. In this project, I implemented:
