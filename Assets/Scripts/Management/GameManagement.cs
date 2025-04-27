@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class GameManagement : MonoBehaviour
 {
     [SerializeField] private GameObject lostScreen;
     [SerializeField] private GameObject winScreen;
     private GeneralTransition _generalTransition;
+
+    private List<IResetUpdater> _resetUpdaters;
 
     public static GameManagement instance;
     private void Awake() {
@@ -20,6 +24,8 @@ public class GameManagement : MonoBehaviour
     void Start()
     {
         _generalTransition = gameObject.GetComponent<GeneralTransition>();
+        _resetUpdaters = transform.root.GetComponentsInChildren<MonoBehaviour>().OfType<IResetUpdater>().ToList();
+
     }
 
     void Update()
@@ -30,20 +36,20 @@ public class GameManagement : MonoBehaviour
         
     }
 
-    // Interface fonksiyonunu çağırma
+
     
 
     private void _gameRestart(){
         _generalTransition.EnterTransition(
             () => {
                 lostScreen.SetActive(false);
+                winScreen.SetActive(false);
                 isGameRestarted = true; 
                 isGameOver = false;
-                winScreen.SetActive(false);
             }
         );
-        StartCoroutine(_resetRestartFlag());
         
+        //StartCoroutine(_resetRestartFlag());
     }
 
 
@@ -62,9 +68,15 @@ public class GameManagement : MonoBehaviour
                     lostScreen.SetActive(true);
                 else
                     winScreen.SetActive(true);
+
+                // Interface function called
+                foreach (var item in _resetUpdaters){
+                    item.IRestarted();
+                }     
                 
             }
         );
+        
     }
 
 

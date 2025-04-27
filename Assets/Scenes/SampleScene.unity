@@ -5093,7 +5093,7 @@ GameObject:
   - component: {fileID: 934863028}
   - component: {fileID: 934863032}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: WCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
