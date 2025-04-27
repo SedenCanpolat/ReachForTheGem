@@ -34,4 +34,5 @@ public class MovingObject : MonoBehaviour
     public void SlideToSideAnimation(){
         Debug.Log("This is a SlideToSideAnimation");
     }
+    
 }

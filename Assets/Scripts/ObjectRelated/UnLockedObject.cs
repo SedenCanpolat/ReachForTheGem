@@ -8,24 +8,32 @@ public class UnLockedObject : Interactable
     [SerializeField] private GameObject _item;
     private bool isHappend = false;
 
+    private InsideOut _insideOut;
+    
+
     public override bool Interact(Item item)
     {
         Debug.Log("Opened");
-        InsideOut insideOut = GetComponent<InsideOut>();
-        if(insideOut && !isHappend){
+        if(_insideOut && !isHappend){
             if(_isEmpty){
                 Debug.Log("Empty");
-                insideOut.NoItem();
+                _insideOut.NoItem();
                 isHappend = true;
             }
             else{
                 Debug.Log("Not Empty");
-                insideOut.ItemExist(_item);
+                _insideOut.ItemExist(_item);
                 isHappend = true;
             }
         }
 
         return false;
     }
-   
+
+    void Start()
+    {
+        _insideOut = GetComponent<InsideOut>();
+    }
+
+    
 }

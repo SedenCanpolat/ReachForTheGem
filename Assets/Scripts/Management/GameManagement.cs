@@ -37,8 +37,6 @@ public class GameManagement : MonoBehaviour
     }
 
 
-    
-
     private void _gameRestart(){
         _generalTransition.EnterTransition(
             () => {
@@ -46,6 +44,11 @@ public class GameManagement : MonoBehaviour
                 winScreen.SetActive(false);
                 isGameRestarted = true; 
                 isGameOver = false;
+
+                // Interface function called 
+                foreach (var item in _resetUpdaters){
+                    item.IRestarted();
+                }
             }
         );
         
@@ -67,12 +70,7 @@ public class GameManagement : MonoBehaviour
                 if (situation == 0)
                     lostScreen.SetActive(true);
                 else
-                    winScreen.SetActive(true);
-
-                // Interface function called
-                foreach (var item in _resetUpdaters){
-                    item.IRestarted();
-                }     
+                    winScreen.SetActive(true);  
                 
             }
         );

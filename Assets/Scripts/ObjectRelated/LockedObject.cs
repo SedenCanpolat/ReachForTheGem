@@ -6,16 +6,19 @@ public class LockedObject : Interactable
     [SerializeField] private bool _isEmpty;
     [SerializeField] private GameObject _itemInside;
     [SerializeField] private Item _key;
-    public bool IsHappend = false;
+    private bool _isHappend = false;
     private MovingObject _movingObject;
     [SerializeField] private bool _isSecond = false;
 
     [SerializeField] private GameObject _pairedObject;
     [SerializeField] private GameObject _blockObject;
+    private bool _isInteracted;
+    private InsideOut _insideOut;
 
     void Start()
     {
         _movingObject = GetComponent<MovingObject>();
+        _insideOut = GetComponent<InsideOut>();
         if(_blockObject != null){
             _blockObject.SetActive(false);
         }
@@ -23,34 +26,33 @@ public class LockedObject : Interactable
 
     public override bool Interact(Item item)
     {
-        bool isInteracted = false;
+        _isInteracted = false;
         if(item != null && item.ID == _key.ID){
             Debug.Log("Door Opened :)");
-            InsideOut insideOut = GetComponent<InsideOut>();
-            if(insideOut && !IsHappend){
+            if(_insideOut && !_isHappend){
                 if(_isEmpty){
                     Debug.Log("Empty");
-                    insideOut.NoItem();
-                    IsHappend = true;
-                    isInteracted = true;
+                    _insideOut.NoItem();
+                    _isHappend = true;
+                    _isInteracted = true;
                 }
                 else{
                     if (_itemInside != null)
                     {
                         Debug.Log("Not Empty");
-                        insideOut.ItemExist(_itemInside);
-                        IsHappend = true;
-                        isInteracted = true;
+                        _insideOut.ItemExist(_itemInside);
+                        _isHappend = true;
+                        _isInteracted = true;
                     }
                     if(_itemInside == null){
                         print("AAAA");
                     }
                 }
             }
-            else if(!IsHappend){
+            else if(!_isHappend){
                 if(_pairedObject != null && _blockObject != null) {
                     _blockObject.SetActive(true);
-                    if(_pairedObject.GetComponent<LockedObject>().IsHappend){
+                    if(_pairedObject.GetComponent<LockedObject>()._isHappend){
                         _blockObject.SetActive(false);
                     }
                 }
@@ -64,12 +66,13 @@ public class LockedObject : Interactable
                         StartCoroutine(_movingObject.MoveAnimation(MovingObject.MoveType.Left));
                     }
                     
-                isInteracted = true;
-                IsHappend = true;
+                _isInteracted = true;
+                _isHappend = true;
                 
             }
         
         }
-        return isInteracted;
-    }   
+        return _isInteracted;
+    }
+
 }
