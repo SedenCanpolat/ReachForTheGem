@@ -81,12 +81,11 @@ public class LockedObject : Interactable, IResetUpdater
 
     public void IRestarted()
     { 
-        print("BBBBBBBBBBBBBB");
         _isInteracted = false;
         _isHappend = false;
         gameObject.transform.position = _startPos;
         if(_itemInside != null){
-            Destroy(_spawnedItem); /// will it be spawned again
+            Destroy(_spawnedItem);
         }
     }
 }

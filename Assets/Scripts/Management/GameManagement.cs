@@ -44,6 +44,7 @@ public class GameManagement : MonoBehaviour
                 winScreen.SetActive(false);
                 isGameRestarted = true; 
                 isGameOver = false;
+                Inventory.instance.EmptyInventory();
 
                 // Interface function called 
                 foreach (var item in _resetUpdaters){

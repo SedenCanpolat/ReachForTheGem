@@ -35,7 +35,6 @@ public class UnLockedObject : Interactable, IResetUpdater
 
     public void IRestarted()
     {
-        print("AAAAAAAAAAA");
         isHappend = false;
         if(_isEmpty){
             gameObject.GetComponent<MeshRenderer>().material.color = _startColor;
@@ -43,7 +42,6 @@ public class UnLockedObject : Interactable, IResetUpdater
         else{
             Destroy(_spawnedItem);
         }
-
     }
 
     void Start()

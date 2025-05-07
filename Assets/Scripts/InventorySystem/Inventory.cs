@@ -46,6 +46,15 @@ public class Inventory : MonoBehaviour
             Debug.LogError("Item is null");
         }
     }
+
+    public void EmptyInventory(){
+        if(_inventory.Count == 0) return;
+        for(int i=0; i <= _inventory.Count; i++){
+            RemoveItem(_inventory[0]);
+        }
+        _inventory.Clear();
+        EmptyHand();
+    }
     
 
 
