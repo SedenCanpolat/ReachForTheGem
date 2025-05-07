@@ -16,10 +16,12 @@ public class LockedObject : Interactable, IResetUpdater
     private InsideOut _insideOut;
     private Vector3 _startPos;
     private GameObject _spawnedItem;
+    private Color _startColor;
 
     void Start()
     {
         _startPos = gameObject.transform.position;
+        _startColor = gameObject.GetComponent<MeshRenderer>().material.color;
         _movingObject = GetComponent<MovingObject>();
         _insideOut = GetComponent<InsideOut>();
         if(_blockObject != null){
@@ -49,7 +51,7 @@ public class LockedObject : Interactable, IResetUpdater
                         _isInteracted = true;
                     }
                     if(_itemInside == null){
-                        print("AAAA");
+                        print("null item");
                     }
                 }
             }
@@ -84,6 +86,9 @@ public class LockedObject : Interactable, IResetUpdater
         _isInteracted = false;
         _isHappend = false;
         gameObject.transform.position = _startPos;
+        if(_isEmpty){
+            gameObject.GetComponent<MeshRenderer>().material.color = _startColor;
+        }
         if(_itemInside != null){
             Destroy(_spawnedItem);
         }
