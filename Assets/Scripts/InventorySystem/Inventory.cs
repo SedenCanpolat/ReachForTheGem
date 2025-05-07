@@ -52,18 +52,26 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         if (_inventory.Count == 0) return;
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        _frame.SetActive(true);
-        if (scroll > 0f)
-        {
-            _selectedIndex = (_selectedIndex + 1) % _inventory.Count;            
+
+        if(_selectedIndex+1 > _inventory.Count){
+            _selectedIndex = _selectedIndex - 1;
         }
-        else if (scroll < 0f)
-        {
-            _selectedIndex = (_selectedIndex - 1 + _inventory.Count) % _inventory.Count;      
+        else{
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            _frame.SetActive(true);
+            if (scroll > 0f)
+            {
+                _selectedIndex = (_selectedIndex + 1) % _inventory.Count;            
+            }
+            else if (scroll < 0f)
+            {
+                _selectedIndex = (_selectedIndex - 1 + _inventory.Count) % _inventory.Count;      
+            }
+            
+            UpdateSelectedItem();
         }
+
         
-        UpdateSelectedItem();
 
     }
 
@@ -73,7 +81,7 @@ public class Inventory : MonoBehaviour
         Item selectedItem = _inventory[_selectedIndex];
         Debug.Log("Selected Item: " + selectedItem.Name);
         _inventoryUI.SelectItem(_inventory[_selectedIndex], _selectedIndex);
-        return selectedItem;
+        return selectedItem;  
     }
 
    

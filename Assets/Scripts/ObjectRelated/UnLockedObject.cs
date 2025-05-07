@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnLockedObject : Interactable
+public class UnLockedObject : Interactable, IResetUpdater
 {
     [SerializeField] private bool _isEmpty;
     [SerializeField] private GameObject _item;
     private bool isHappend = false;
 
     private InsideOut _insideOut;
+    private GameObject _spawnedItem;
+    private Color _startColor;
     
 
     public override bool Interact(Item item)
@@ -22,7 +24,8 @@ public class UnLockedObject : Interactable
             }
             else{
                 Debug.Log("Not Empty");
-                _insideOut.ItemExist(_item);
+                //_insideOut.ItemExist(_item);
+                _spawnedItem = _insideOut.ItemExist(_item);
                 isHappend = true;
             }
         }
@@ -30,8 +33,22 @@ public class UnLockedObject : Interactable
         return false;
     }
 
+    public void IRestarted()
+    {
+        print("AAAAAAAAAAA");
+        isHappend = false;
+        if(_isEmpty){
+            gameObject.GetComponent<MeshRenderer>().material.color = _startColor;
+        }
+        else{
+            Destroy(_spawnedItem);
+        }
+
+    }
+
     void Start()
     {
+        _startColor = gameObject.GetComponent<MeshRenderer>().material.color;
         _insideOut = GetComponent<InsideOut>();
     }
 

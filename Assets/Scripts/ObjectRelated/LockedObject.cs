@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class LockedObject : Interactable
+public class LockedObject : Interactable, IResetUpdater
 {
     [SerializeField] private bool _isEmpty;
     [SerializeField] private GameObject _itemInside;
@@ -14,9 +14,12 @@ public class LockedObject : Interactable
     [SerializeField] private GameObject _blockObject;
     private bool _isInteracted;
     private InsideOut _insideOut;
+    private Vector3 _startPos;
+    private GameObject _spawnedItem;
 
     void Start()
     {
+        _startPos = gameObject.transform.position;
         _movingObject = GetComponent<MovingObject>();
         _insideOut = GetComponent<InsideOut>();
         if(_blockObject != null){
@@ -40,7 +43,8 @@ public class LockedObject : Interactable
                     if (_itemInside != null)
                     {
                         Debug.Log("Not Empty");
-                        _insideOut.ItemExist(_itemInside);
+                        //_insideOut.ItemExist(_itemInside);
+                        _spawnedItem = _insideOut.ItemExist(_itemInside);
                         _isHappend = true;
                         _isInteracted = true;
                     }
@@ -75,4 +79,14 @@ public class LockedObject : Interactable
         return _isInteracted;
     }
 
+    public void IRestarted()
+    { 
+        print("BBBBBBBBBBBBBB");
+        _isInteracted = false;
+        _isHappend = false;
+        gameObject.transform.position = _startPos;
+        if(_itemInside != null){
+            Destroy(_spawnedItem); /// will it be spawned again
+        }
+    }
 }
