@@ -7,7 +7,7 @@ Players must find keys, overcome various obstacles waiting for them, and reach t
 
 ## 👨‍💻 Developer: Seden Canpolat
 
-I have been developing this game solo to enhance my coding skills. **It's still in development.** So far in this project, I have implemented:
+I have been developing this game solo to enhance my coding skills. **It's still in development and serves as a prototype.** So far in this project, I have implemented:
 
 - Player movement  
 - Field of view system for both the player and the enemy  
