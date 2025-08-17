@@ -21,3 +21,8 @@ I have been developing this game solo to enhance my coding skills. **It's still 
 - Scene management  
 - Animations  
 - Bomb, security camera, and laser mechanics to detect the player
+
+
+![08173-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/ac623966-d479-4c41-a941-7b3eab7a9e3d)
+
+![08174-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/e0ef922e-ae28-4aab-b81d-ee72ba7eb0fe)
