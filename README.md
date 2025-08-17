@@ -5,6 +5,8 @@ Players must find keys, overcome various obstacles waiting for them, and reach t
 
 🎮 **Play From Here**: [https://seden.itch.io/reach-for-the-jem](https://seden.itch.io/reach-for-the-jem)
 
+![08172-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/21eef740-f8b5-4bd3-8efe-3845d3bca0b6)
+
 ## 👨‍💻 Developer: Seden Canpolat
 
 I have been developing this game solo to enhance my coding skills. **It's still in development and serves as a prototype.** So far in this project, I have implemented:
