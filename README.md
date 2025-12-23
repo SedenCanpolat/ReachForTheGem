@@ -25,7 +25,7 @@ I have been developing this game solo to enhance my coding skills. **It's still 
 
 ![08173-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/ac623966-d479-4c41-a941-7b3eab7a9e3d)
 
-## Key Technical Implementations
+## 🛠 Key Technical Implementations
 
 ### 1. AI State Machine with NavMesh Pathfinding
 
